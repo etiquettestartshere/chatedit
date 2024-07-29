@@ -1,0 +1,32 @@
+<form class="chatedit edit-form">
+  <h3>{{localize "chatedit.editing.speaker"}}</h3>
+  <select name="speaker">
+    <optgroup label="{{localize "chatedit.editing.player"}}">
+      {{#each players}}
+        <option value="{{id}}" {{#if (eq ../selected id)}}selected{{/if}}>{{name}}</option>
+      {{/each}}
+    </optgroup>
+    {{#each actorGroups}}
+      <optgroup label="{{localize label}}">
+        {{#each actors}}
+          <option value="{{id}}" {{#if (eq ../../selected id)}}selected{{/if}}>{{name}}</option>
+        {{/each}}
+      </optgroup>
+    {{/each}}
+  </select>
+  <h3>{{localize "chatedit.editing.original"}}</h3>
+  <blockquote>{{messageText}}</blockquote>
+  <h3>{{localize "chatedit.editing.revised"}}</h3>
+  <textarea name="content" autocomplete="off">{{messageText}}</textarea>
+  <br/>
+  <div class="actions">
+    <button type="button" id="cancel">
+      <i class="fas fa-xmark"></i>
+      {{localize "chatedit.editing.cancel"}}
+    </button>
+    <button type="submit">
+      <i class="fas fa-save"></i>
+      {{localize "chatedit.editing.save"}}
+    </button>
+  </div>
+</form>

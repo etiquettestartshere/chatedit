@@ -1,0 +1,110 @@
+{
+  "chatedit": {
+    "editing": {
+      "already-in-character": "This message is already in-character.",
+      "already-out-of-character": "This message is already out-of-character",
+      "cancel": "Cancel",
+      "context-menu": "Edit Message",
+      "contextualize-not-allowed": "You're not allowed to contextualize this message.",
+      "edit-not-allowed": "You're not allowed to edit this message.",
+      "flag": "(edited)",
+      "in-character": "Make in-Character",
+      "original": "Original Message",
+      "out-of-character": "Make Out-of-Character",
+      "player": "Player",
+      "revised": "Revised Message",
+      "save": "Save",
+      "speaker": "Speaker",
+      "title": "Editing Message"
+    },
+    "errors": {
+      "missing-lib-wrapper": "Karakara's chat enhancements depends on libWrapper, which doesn't appear to be installed/enabled.",
+      "invalid-theme": "The existing theme settings are corrupt. The defaults will be restored."
+    },
+    "settings": {
+      "allow-editing": {
+        "name": "Allow Editing",
+        "hint": "Allow players to edit messages after they've been sent."
+      },
+      "color": {
+        "colorize": {
+          "name": "Colorize Chat Messages",
+          "hint": "Whether or not chat messages should be colorized."
+        },
+        "emote": {
+          "bg": {
+            "name": "Emote Background Color",
+            "hint": "The background color of emote messages."
+          },
+          "enable": {
+            "name": "Colorize Emote Messages",
+            "hint": "Whether or not emote chat messages should be colorized."
+          },
+          "fg": {
+            "name": "Emote Foreground Color",
+            "hint": "The foreground (text) color of emote messages."
+          }
+        },
+        "in-character": {
+          "bg": {
+            "name": "In-Character Background Color",
+            "hint": "The background color of in-character messages."
+          },
+          "enable": {
+            "name": "Colorize In-Character Messages",
+            "hint": "Whether or not in-character chat messages should be colorized."
+          },
+          "fg": {
+            "name": "In-Character Foreground Color",
+            "hint": "The foreground (text) color of in-character messages."
+          }
+        },
+        "other": {
+          "bg": {
+            "name": "Other Background Color",
+            "hint": "The background color of other messages."
+          },
+          "enable": {
+            "name": "Colorize Other Messages",
+            "hint": "Whether or not other chat messages should be colorized."
+          },
+          "fg": {
+            "name": "Other Foreground Color",
+            "hint": "The foreground (text) color of other messages."
+          }
+        },
+        "roll": {
+          "bg": {
+            "name": "Roll Background Color",
+            "hint": "The background color of roll messages."
+          },
+          "enable": {
+            "name": "Colorize Roll Messages",
+            "hint": "Whether or not roll chat messages should be colorized."
+          },
+          "fg": {
+            "name": "Roll Foreground Color",
+            "hint": "The foreground (text) color of roll messages."
+          }
+        },
+        "name": "Color Settings",
+        "hint": "Configure what color different message types should be, and if they should be colorized at all.",
+        "label": "Configure Color Settings",
+        "title": "Configure Color Settings",
+        "save-changes": "Save Changes"
+      },
+      "default-prefix": {
+        "name": "Default Chat Prefix",
+        "hint": "If specified, this will be prepended to messages without a prefix."
+      },
+      "markdown": {
+        "name": "Markdown",
+        "hint": "Enables the use of markdown formatting."
+      },
+      "show-edited": {
+        "name": "Show Edited Messages",
+        "hint": "Shows a label next to messages that have been edited."
+      }
+    }
+  }
+}

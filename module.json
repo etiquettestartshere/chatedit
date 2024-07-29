@@ -1,0 +1,26 @@
+{
+  "id": "chatedit",
+  "title": "Chat Edit",
+  "version": "0.0.1",
+  "scripts": [ "node_modules/marked/marked.min.js" ],
+  "esmodules": ["setup.mjs"],
+  "compatibility": {
+    "minimum": "11",
+    "verified": "12"
+  },
+  "styles": ["styles/index.css"],
+  "languages": [
+    { "lang": "en", "name": "English", "path": "lang/en.json" }
+  ],
+  "flags": {"hotReload": {"extensions": ["css", "json"], "paths": ["styles/index.css", "lang/en.json"]}},
+  "relationships": {
+    "requires": [
+        {
+            "id": "lib-wrapper",
+            "compatibility": {
+                "minimum": "1.12.7.1"
+            }
+        }
+    ]
+  }
+}
