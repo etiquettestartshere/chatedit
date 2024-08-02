@@ -8,7 +8,7 @@ export default class Markdown {
       "ChatLog.prototype.processMessage",
       async function (wrapper, message, ...args) {
         // The message, but with leading and trailing whitespace trimmed.
-        let trimmed = message//message.trim();
+        let trimmed = message.trim();
 
         // The command at the start of the message, if any.
         let prefix = "";
@@ -45,8 +45,8 @@ export default class Markdown {
       headerIds: false,
       breaks: true
     }).trimEnd();
-    if (message.startsWith('<p>')) message = message.substr(3);
-    if (message.endsWith('</p>')) message = message.substr(0, message.length - 4);
+    //if (message.startsWith('<p>')) message = message.substr(3);
+    //if (message.endsWith('</p>')) message = message.substr(0, message.length - 4);
     const newLine = /(<\/?[ a-z]+>)\n(<\/?[ a-z]+>?)/;
     while (newLine.test(message)) message = message.replace(newLine, '$1$2');
     return [ originalMessage, message ];

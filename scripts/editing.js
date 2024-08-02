@@ -46,10 +46,10 @@ export default class Editing {
         selected,
         players,
         actorGroups,
-        messageText: this.#message.content //.replace(/< *br *\/?>/gm, "\n")
-          .replace(/<p +class="chatedited">.+/, '')
-          //.replace(/[\r\n]{2,}/, '<br><br>')
-          //.replace(/(\r\n|\r|\n)+/im, '<br>')
+        messageText: this.#message.content.replace(/<p +class="chatedited">.+/, '') 
+        //.replace(/< *br *\/?>/gm, "\n")
+        //.replace(/[\r\n]{2,}/, '<br><br>')
+        //.replace(/(\r\n|\r|\n)+/im, '<br>')
       });
     }
   
@@ -61,7 +61,7 @@ export default class Editing {
     async _updateObject(_event, data) {
       let content;
       if (game.settings.get(MODULE_NAME, "showEdited")) {
-        content = data.content += ` <p class="chatedited bullshit">(edited)</p>`;
+        content = data.content += ` <p class="chatedited">(edited)</p>`;
       } else {
         content = data.content;
       }  
