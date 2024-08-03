@@ -2,7 +2,7 @@
   "id": "chatedit",
   "title": "Chat Edit",
   "version": "0.0.2",
-  "scripts": [ "node_modules/marked/marked.min.js" ],
+  "scripts": ["libs/marked.min.js"],
   "esmodules": ["setup.mjs"],
   "compatibility": {
     "minimum": "11",

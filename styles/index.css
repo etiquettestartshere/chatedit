@@ -1,7 +1,3 @@
-p.last-para {
-  margin-bottom: .0em;
-}
-
 p.chatedited {
 	font-size: xx-small;
 	font-style: italic;
@@ -11,6 +7,19 @@ p.chatedited {
   margin-bottom: .2em;
   display: flex;
   /*flex: 1;*/
+}
+
+p.last-para {
+  margin-bottom: 0em;
+}
+
+p.first-para {
+  margin-top: 0em;
+}
+
+p.chatedited.last-para {
+  margin-top: 0.5em;
+  margin-bottom: .1em;
 }
 
 /*.chatedit.edited {

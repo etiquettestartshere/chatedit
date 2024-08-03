@@ -1,32 +1,56 @@
 //import { marked } from "marked";
+//import { marked } from '../node_modules/marked/lib/marked.esm.js';
 import { loc, MODULE_NAME } from "./common.js";
 
+export class MarkdownHook {
+  static init() {
+    if (game.settings.get(MODULE_NAME, "markdown")) {
+      Hooks.on("preCreateChatMessage", MarkdownHook.processMarkdown);
+      Hooks.on("renderChatMessage", MarkdownHook._lastP);
+    };
+  };
+
+  static async processMarkdown(message) {
+    let newMessage = marked.parse(message.content, {
+      gfm: true,
+      breaks: true
+    }).trimEnd();
+    await message.updateSource({content: newMessage});
+  };
+
+  static _lastP(message, [html]) {
+    const body = html.querySelector('.chat-message .message-content');
+    const paras = body.querySelectorAll('p');
+    if (!foundry.utils.isEmpty(paras)) {
+      const last = Array.from(paras).at(-1);
+      last.classList.add("last-para");
+      const first = Array.from(paras).at(0);
+      first.classList.add("first-para");
+    };
+  };
+};
+
+/*
 export default class Markdown {
   static init() {
     libWrapper.register(
       MODULE_NAME,
       "ChatLog.prototype.processMessage",
       async function (wrapper, message, ...args) {
-        // The message, but with leading and trailing whitespace trimmed.
         let trimmed = message.trim();
-
-        // The command at the start of the message, if any.
         let prefix = "";
         if (trimmed.startsWith("/")) prefix = trimmed.split(" ")[0];
-
-        // The rest of the message, without the prefix.
         let suffix = trimmed.substring(prefix.length !== 0 ? prefix.length + 1 : 0);
-
         if (game.settings.get(MODULE_NAME, "markdown")) {
-          // The suffix, before markdown gets processed.
           let originalSuffix;
-
           switch (prefix) {
             case "":
             case "/ooc":
             case "/ic":
             case "/emote":
-            case "/whisper": case "/w":
+            case "/em":
+            case "/whisper": 
+            case "/w":
               [ originalSuffix, suffix ] = await Markdown.processMessage(suffix);
               break;
             default:
@@ -42,30 +66,13 @@ export default class Markdown {
   static async processMessage(message) {
     const originalMessage = message;
     message = marked.parse(message, {
-      headerIds: false,
       breaks: true
     }).trimEnd();
-    //if (message.startsWith('<p>')) message = message.substr(3);
-    //if (message.endsWith('</p>')) message = message.substr(0, message.length - 4);
+    if (message.startsWith('<p>')) {message = message.substring(3);console.warn("p")};
+    if (message.endsWith('</p>')) {message = message.substring(0, message.length - 4);console.warn("/p")};
     const newLine = /(<\/?[ a-z]+>)\n(<\/?[ a-z]+>?)/;
+    console.warn(newLine);
     while (newLine.test(message)) message = message.replace(newLine, '$1$2');
     return [ originalMessage, message ];
   }
-}
-
-export class Cleanup {
-  static init() {
-    Hooks.on("renderChatMessage", Cleanup._lastP);
-  };
-
-  static _lastP(message, [html]) {
-    const body = html.querySelector('.chat-message .message-content');
-    const paras = body.querySelectorAll('p');
-    if (!foundry.utils.isEmpty(paras)) {
-      const last = Array.from(paras).at(-1);
-      last.classList.add("last-para");
-      //if (Array.from(last.classList).includes("chatedited")) console.warn("edited");
-      //last.style.marginBottom = '0px';
-    };  
-  };
-};
+}*/
