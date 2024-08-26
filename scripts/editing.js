@@ -77,12 +77,8 @@ export default class Editing {
         if (this.#message.style != CONST.CHAT_MESSAGE_STYLES.EMOTE)
           type = CONST.CHAT_MESSAGE_STYLES.IC;
       }
-
       if (speaker.alias === undefined) speaker.alias = null;
 
-      console.log(_event)
-      console.warn(data)
-      console.warn(content)
       this.#message.update({
         content,
         speaker,
@@ -188,76 +184,72 @@ export default class Editing {
   }
 
   static init() {
+    Hooks.once("setup", Editing.setup);
+    Hooks.on("getChatLogEntryContext", Editing.#rightClickMenu);
+  }
 
-    //Hooks.on("getChatLogEntryContext", Editing._entry);
+  static #rightClickMenu(chat, context) {
+    const options = [];
 
-    libWrapper.register(
-      MODULE,
-      "ChatLog.prototype._getEntryContextOptions",
-      function (wrapper, ...args) {
-        const options = wrapper(...args);
-
-        const makeInCharacter = {
-          name: localized("editing.in-character"),
-          icon: "<i class=\"fas fa-user-secret\"></i>",
-          condition: ([li]) => {
-            const messageId = li.getAttribute("data-message-id");
-            return Editing.#isOutOfCharacter(messageId) && game.user.character != null;
-          },
-          callback: ([li]) => {
-            const messageId = li.getAttribute("data-message-id");
-            Editing.#makeInCharacter(messageId);
-          },
-        };
-
-        const makeOutOfCharacter = {
-          name: localized("editing.out-of-character"),
-          icon: "<i class=\"fas fa-user\"></i>",
-          condition: ([li]) => {
-            const messageId = li.getAttribute("data-message-id");
-            return Editing.#isInCharacter(messageId);
-          },
-          callback: ([li]) => {
-            const messageId = li.getAttribute("data-message-id");
-            Editing.#makeOutOfCharacter(messageId);
-          },
-        };
-
-        const editOption = {
-          name: localized("editing.context-menu"),
-          icon: "<i class=\"fas fa-pencil-alt\"></i>",
-          condition: ([li]) => {
-            const messageId = li.getAttribute("data-message-id");
-            return Editing.#canEditMessage(messageId);
-          },
-          callback: ([li]) => {
-            const messageId = li.getAttribute("data-message-id");
-            Editing.#editMessage(messageId);
-          },
-        };
-
-        const concealOption = options.find((option) => option.name.includes("Conceal"));
-        const concealOptionIndex = options.indexOf(concealOption);
-
-        if (concealOptionIndex != -1) {
-          options.splice(concealOptionIndex + 1, 0, makeInCharacter, makeOutOfCharacter);
-        } else {
-          options.push(makeInCharacter);
-          options.push(makeOutOfCharacter);
-        }
-
-        const deleteOption = options.find((option) => option.name.includes("Delete"));
-        const deleteOptionIndex = options.indexOf(deleteOption);
-
-        if (deleteOptionIndex != -1) {
-          options.splice(deleteOptionIndex, 0, editOption);
-        } else {
-          options.push(editOption);
-        }
-
-        return options;
+    const makeInCharacter = {
+      name: localized("editing.in-character"),
+      icon: "<i class=\"fas fa-user-secret\"></i>",
+      condition: ([li]) => {
+        const messageId = li.getAttribute("data-message-id");
+        return Editing.#isOutOfCharacter(messageId) && game.user.character != null;
       },
-      "WRAPPER");
+      callback: ([li]) => {
+        const messageId = li.getAttribute("data-message-id");
+        Editing.#makeInCharacter(messageId);
+      },
+    };
+
+    const makeOutOfCharacter = {
+      name: localized("editing.out-of-character"),
+      icon: "<i class=\"fas fa-user\"></i>",
+      condition: ([li]) => {
+        const messageId = li.getAttribute("data-message-id");
+        return Editing.#isInCharacter(messageId);
+      },
+      callback: ([li]) => {
+        const messageId = li.getAttribute("data-message-id");
+        Editing.#makeOutOfCharacter(messageId);
+      },
+    };
+
+    const editOption = {
+      name: localized("editing.context-menu"),
+      icon: "<i class=\"fas fa-pencil-alt\"></i>",
+      condition: ([li]) => {
+        const messageId = li.getAttribute("data-message-id");
+        return Editing.#canEditMessage(messageId);
+      },
+      callback: ([li]) => {
+        const messageId = li.getAttribute("data-message-id");
+        Editing.#editMessage(messageId);
+      },
+    };
+
+    const concealOption = options.find((option) => option.name.includes("Conceal"));
+    const concealOptionIndex = options.indexOf(concealOption);
+
+    if (concealOptionIndex != -1) {
+      options.splice(concealOptionIndex + 1, 0, makeInCharacter, makeOutOfCharacter);
+    } else {
+      options.push(makeInCharacter);
+      options.push(makeOutOfCharacter);
+    }
+
+    const deleteOption = options.find((option) => option.name.includes("Delete"));
+    const deleteOptionIndex = options.indexOf(deleteOption);
+
+    if (deleteOptionIndex != -1) {
+      options.splice(deleteOptionIndex, 0, editOption);
+    } else {
+      options.push(editOption);
+    }
+
+    options.forEach(o => context.push(o));
   }
 
   static #isInCharacter(messageId) {
@@ -275,9 +267,5 @@ export default class Editing {
   static setup() {
     const editMarkerTemplate = document.createElement("template");
     editMarkerTemplate.innerHTML = `<span class="chatedit edited">${loc("editing.flag")}</span>`;
-  }
-
-  static _entry() {
-    console.warn(arguments);
   }
 }

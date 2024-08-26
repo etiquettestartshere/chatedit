@@ -3,19 +3,20 @@ import { MODULE } from "./const.js";
 export class ProcessChat {
   static init() {
     if (game.settings.get(MODULE, "markdown")) {
-      Hooks.on("preCreateChatMessage", ProcessChat.processMarkdown);
+      Hooks.on("renderChatMessage", ProcessChat.processMarkdown);
       Hooks.on("renderChatMessage", ProcessChat._edited);
       Hooks.on("renderChatMessage", ProcessChat._lastPara);
     };
   }
 
-  static async processMarkdown(message) {
+  static async processMarkdown(message, [html]) {
     if (message?.flags.dnd5e || !foundry.utils.isEmpty(message.rolls)) return;
+    if (html.querySelector('.card-buttons')) return;
     let newMessage = marked.parseInline(message.content, {
       gfm: true,
       breaks: true
     }).trimEnd();
-    await message.updateSource({content: newMessage});
+    html.querySelector('.message-content').innerHTML = newMessage;
   }
 
   static async _edited(message, [html]) {

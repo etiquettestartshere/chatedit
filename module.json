@@ -12,15 +12,5 @@
   "languages": [
     {"lang": "en", "name": "English", "path": "lang/en.json"}
   ],
-  "flags": {"hotReload": {"extensions": ["css", "json", "hbs"], "paths": ["styles", "lang", "templates"]}},
-  "relationships": {
-    "requires": [
-        {
-            "id": "lib-wrapper",
-            "compatibility": {
-                "minimum": "1.12.7.1"
-            }
-        }
-    ]
-  }
+  "flags": {"hotReload": {"extensions": ["css", "json", "hbs"], "paths": ["styles", "lang", "templates"]}}
 }
