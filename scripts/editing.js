@@ -46,10 +46,8 @@ export default class Editing {
         selected,
         players,
         actorGroups,
-        messageText: this.#message.content.replace(/<p +class="chatedited">.+/, '') 
-        //.replace(/< *br *\/?>/gm, "\n")
-        //.replace(/[\r\n]{2,}/, '<br><br>')
-        //.replace(/(\r\n|\r|\n)+/im, '<br>')
+        messageText: this.#message.content.replace(/<p +class="chatedited">.+/, '')
+                                          .replace(/< *br *\/?>/gm, "\n")
       });
     }
   
@@ -65,7 +63,8 @@ export default class Editing {
       } else {
         flags = this.#message.flags;
       }
-      content = data.content;
+      content = data.content.replace(/[\r\n]{2,}/gim, '<br><br>')
+                            .replace(/(\r\n|\r|\n)+/gim, '<br>');
       if (data.speaker.startsWith("user-")) {
         id = data.speaker.substring("user-".length);
         user = game.users.get(id);
@@ -81,6 +80,9 @@ export default class Editing {
 
       if (speaker.alias === undefined) speaker.alias = null;
 
+      console.log(_event)
+      console.warn(data)
+      console.warn(content)
       this.#message.update({
         content,
         speaker,
