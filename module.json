@@ -1,7 +1,7 @@
 {
   "id": "chatedit",
   "title": "Chat Edit",
-  "version": "0.0.3",
+  "version": "0.0.4",
   "scripts": ["libs/marked.min.js"],
   "esmodules": ["setup.mjs"],
   "styles": ["styles/chatedit-styles.css"],
