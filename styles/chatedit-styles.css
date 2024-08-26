@@ -1,0 +1,35 @@
+span.chatedited {
+  color: var(--color-text-dark-5);
+}
+
+p.last-para {
+  margin-bottom: 0em;
+}
+
+p.first-para {
+  margin-top: 0em;
+}
+
+.chatedit.edit-form {
+  display: flex;
+  flex-direction: column;
+}
+
+.chatedit.edit-form h3,
+.chatedit.edit-form blockquote,
+.chatedit.edit-form .actions { flex: 0 0 auto; }
+
+.chatedit.edit-form textarea { 
+  flex: 1 0;
+  min-height: 400px;
+}
+
+.chatedit.edit-form .actions {
+  display: flex;
+  flex-direction: row;
+  flex-wrap: nowrap;
+}
+
+.form-group[data-setting-id="chatedit.default-prefix"] input[type="text"] { flex: 0.25; }
+
+.chatedit input[type="color"] { flex: 0.25; }

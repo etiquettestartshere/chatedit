@@ -1,5 +1,5 @@
 
-import { MODULE_NAME, loc, localized } from "./common.js";
+import { MODULE, loc, localized } from "./const.js";
 
 export default class Editing {
   static #Form = class Form extends FormApplication {
@@ -59,14 +59,13 @@ export default class Editing {
     }
   
     async _updateObject(_event, data) {
-      let content;
-      if (game.settings.get(MODULE_NAME, "showEdited")) {
-        content = data.content += ` <p class="chatedited">(edited)</p>`;
+      let content, id, speaker, token, type, user, flags;
+      if (game.settings.get(MODULE, "showEdited")) {
+        flags = foundry.utils.mergeObject(this.#message.flags, { "chatedit": true });
       } else {
-        content = data.content;
-      }  
-      
-      let id, speaker, token, type, user;
+        flags = this.#message.flags;
+      }
+      content = data.content;
       if (data.speaker.startsWith("user-")) {
         id = data.speaker.substring("user-".length);
         user = game.users.get(id);
@@ -87,6 +86,7 @@ export default class Editing {
         speaker,
         type,
         user,
+        flags
       });
     }
 
@@ -123,7 +123,7 @@ export default class Editing {
 
   static async #editMessage(messageId) {
     if (!Editing.#canEditMessage(messageId)) {
-      ui.notifications.warn(_("editing.edit-not-allowed"));
+      ui.notifications.warn(loc("editing.edit-not-allowed"));
       return;
     }
 
@@ -157,11 +157,11 @@ export default class Editing {
 
   static #makeInCharacter(messageId) {
     if (!Editing.#canEditMessage(messageId)) {
-      ui.notifications.warn(_("editing.contextualize-not-allowed"));
+      ui.notifications.warn(loc("editing.contextualize-not-allowed"));
       return;
     }
     if (!Editing.#isOutOfCharacter(messageId)) {
-      ui.notifications.warn(_("editing.already-in-character"));
+      ui.notifications.warn(loc("editing.already-in-character"));
       return;
     }
     
@@ -172,11 +172,11 @@ export default class Editing {
 
   static #makeOutOfCharacter(messageId) {
     if (!Editing.#canEditMessage(messageId)) {
-      ui.notifications.warn(_("editing.contextualize-not-allowed"));
+      ui.notifications.warn(loc("editing.contextualize-not-allowed"));
       return;
     }
     if (!Editing.#isInCharacter(messageId)) {
-      ui.notifications.warn(_("editing.already-in-character"));
+      ui.notifications.warn(loc("editing.already-in-character"));
       return;
     }
     
@@ -187,8 +187,10 @@ export default class Editing {
 
   static init() {
 
+    //Hooks.on("getChatLogEntryContext", Editing._entry);
+
     libWrapper.register(
-      MODULE_NAME,
+      MODULE,
       "ChatLog.prototype._getEntryContextOptions",
       function (wrapper, ...args) {
         const options = wrapper(...args);
@@ -271,5 +273,9 @@ export default class Editing {
   static setup() {
     const editMarkerTemplate = document.createElement("template");
     editMarkerTemplate.innerHTML = `<span class="chatedit edited">${loc("editing.flag")}</span>`;
+  }
+
+  static _entry() {
+    console.warn(arguments);
   }
 }
