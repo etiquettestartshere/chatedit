@@ -20,7 +20,7 @@ export class ProcessChat {
   }
 
   static async _edited(message, [html]) {
-    const flag = message.flags?.chatedit;
+    const flag = message.flags?.chatedit?.edited;
     if (!flag) return;
     const newhtml = '<span class="chatedited"><em>(edited)</em><span>';
     const meta = html.querySelector('.message-metadata');

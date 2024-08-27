@@ -24,7 +24,20 @@ p.first-para {
   min-height: 400px;
 }
 
+.chatedit.edit-form-v2 textarea { 
+  flex: 0 0 1;
+  height: 828px;
+  resize: vertical;
+  padding: 0.4rem;
+}
+
 .chatedit.edit-form .actions {
+  display: flex;
+  flex-direction: row;
+  flex-wrap: nowrap;
+}
+
+.chatedit.edit-form-v2 .actions {
   display: flex;
   flex-direction: row;
   flex-wrap: nowrap;
