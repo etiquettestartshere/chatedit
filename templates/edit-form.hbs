@@ -14,11 +14,11 @@
       </optgroup>
     {{/each}}
   </select>
-  <h3>{{localize "chatedit.editing.original"}}</h3>
-  <blockquote>{{messageText}}</blockquote>
+  {{!<h3>{{localize "chatedit.editing.original"}}{{!</h3>
+  <blockquote>{{messageText}}{{!</blockquote>}}
   <h3>{{localize "chatedit.editing.revised"}}</h3>
   <textarea name="content" autocomplete="off">{{messageText}}</textarea>
-  <br/>
+  <br>
   <div class="actions">
     <button type="submit">
       <i class="fas fa-save"></i>

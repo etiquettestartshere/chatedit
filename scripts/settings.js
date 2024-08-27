@@ -6,6 +6,7 @@ export class ModuleSettings {
   static init() {
     ModuleSettings._showEdited();
     ModuleSettings._md();
+    ModuleSettings._v2();
   }
 
   static _showEdited() {
@@ -31,6 +32,17 @@ export class ModuleSettings {
       requiresReload: true,
       scope: "client",
     });
+  }
 
+  static _v2() {
+    game.settings.register(MODULE, 'appv2', {
+      name: "Use ApplicationV2",
+      hint: "Use the ApplicationV2 editor with native darkmode support.",
+      type: Boolean,
+      config: true,
+      default: false,
+      requiresReload: true,
+      scope: "client",
+    });
   }
 }

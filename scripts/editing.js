@@ -9,9 +9,11 @@ export class Editing {
         editable: true,
         resizable: true,
         width: 400,
+        height: 830,
         popOut: true,
         title: localized("editing.title"),
         template: "modules/chatedit/templates/edit-form.hbs",
+        render: console.warn("re")
       });
     }
   
@@ -189,6 +191,9 @@ export class Editing {
   }
 
   static #rightClickMenu(chat, context) {
+
+    if (game.settings.get(MODULE, "appv2")) return;
+
     const options = [];
 
     const makeInCharacter = {
@@ -270,7 +275,17 @@ export class Editing {
   }
 }
 
-//~~~~~~~~~~~~~~~ APP V2 VERSION ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~//
+
+
+
+
+
+
+
+
+
+
+//~~~~~~~~~~~~~~~ APP V2 VERSION ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~//
 
 const { ApplicationV2, HandlebarsApplicationMixin } = foundry.applications.api
 export class EditingV2 {
@@ -297,12 +312,13 @@ export class EditingV2 {
       tag: "form",
       position: {
         width: 400,
-        height: 828
+        height: 830
       },
       classes: [MODULE, "edit-form-v2"],
       window: {
         title: "chatedit.editing.title",
         minimizable: true,
+        //resizable: "horizontal",
         resizable: true,
         contentClasses: ["standard-form"]
       },
@@ -314,7 +330,7 @@ export class EditingV2 {
     static PARTS = {
       form: {
         template: `modules/${MODULE}/templates/edit-form-v2.hbs`,
-        scrollable: [""]
+        scrollable: ['#overflow-auto-div']
       }
     }
 
@@ -382,6 +398,9 @@ export class EditingV2 {
 
     _onRender() {
       return;
+      const html = this.element;
+      const el = html.querySelector('.flexcol textarea');
+      el.style.height = ((el.scrollHeight / 2)+50)+"px";
     }
 
     static async _close() {
@@ -490,6 +509,9 @@ export class EditingV2 {
   }
 
   static #rightClickMenu(chat, context) {
+
+    if (!game.settings.get(MODULE, "appv2")) return;
+
     const options = [];
 
     const makeInCharacter = {
