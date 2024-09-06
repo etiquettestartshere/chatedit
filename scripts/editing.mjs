@@ -238,7 +238,7 @@ export class Editing {
   /**
    * Populate the right click options for editing chat messages.
    * @param {HTMLElement} html HTML contents.
-   * @param {array} options    The context menu options.
+   * @param {Array} options    The context menu options.
    */
   static _contextMenu(html, options) {
     options.push(
