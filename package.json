@@ -1,0 +1,23 @@
+{
+  "name": "chatedit",
+  "version": "1.0.0",
+  "scripts": {
+    "build": "rollup -c rollup.config.mjs"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/etiquettestartshere/chatedit.git"
+  },
+  "keywords": [
+    "fvtt",
+    "module"
+  ],
+  "author": "alakshana",
+  "bugs": {
+    "url": "https://github.com/etiquettestartshere/chatedit"
+  },
+  "homepage": "https://github.com/etiquettestartshere/chatedit",
+  "devDependencies": {
+    "rollup": "^4.21.2"
+  }
+}

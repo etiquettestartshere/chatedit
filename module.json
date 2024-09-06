@@ -1,0 +1,24 @@
+{
+  "id": "chatedit",
+  "title": "Chat Edit",
+  "version": "0.0.22",
+  "esmodules": ["scripts/setup.mjs"],
+  "styles": ["styles/chatedit-styles.css"],
+  "compatibility": {
+    "minimum": "11",
+    "verified": "12"
+  },
+  "languages": [
+    {"lang": "en", "name": "English", "path": "lang/en.json"}
+  ],
+  "flags": {"hotReload": {"extensions": ["css", "json", "hbs"], "paths": ["styles", "lang", "templates"]}},
+  "url": "https://github.com/etiquettestartshere/chatedit",
+  "authors": [
+    {
+      "name": "alakshana",
+      "discord": "alakshana",
+      "url": "https://github.com/etiquettestartshere",
+      "flags": {}
+    }
+  ]
+}

@@ -1,0 +1,95 @@
+.chatedit.edit-form-v2 {
+
+  max-height: 830px;
+  --header-height: 32px;
+
+  h5 {
+    font-size: var(--font-size-18);
+    margin: 0.4rem 0 .05rem;
+  }
+
+  .standard-form {
+    gap: .25rem;
+    width: auto;
+
+    .form-group {
+      gap: 0.1em;
+    }
+  }
+
+  .alias-row {
+    display: flex;
+
+    input {
+      height: 1.8rem;
+    }
+
+    button {
+      width: 80px;
+      margin-left: .4em;
+      height: 1.8rem;
+    }
+  }
+
+  .window-content {
+    display: flex;
+    flex-direction: column;
+    flex-wrap: nowrap;
+    justify-content: flex-start;
+    padding: 8px;
+    overflow-y: auto;
+    overflow-x: hidden;
+  }
+
+  textarea {
+    flex: 1 1 auto;
+    height: 620px;
+    resize: none;
+  }
+
+  .form-footer {
+    gap: .3rem;
+  }
+
+  .actions {
+    display: flex;
+    flex-direction: row;
+    margin-top: auto;
+    margin-bottom: 5px;
+    flex: 1 0;
+
+    button {
+      height: 2rem;
+    }
+  }
+}
+
+.chatedit.edit-form {
+
+  max-height: 830px;
+  display: flex;
+  flex-direction: column;
+
+  .alias-row {
+    display: flex;
+
+    button {
+      flex: 0 0 auto;
+      width: 5.5rem;
+      margin-left: .4em;
+      height: 32px;
+    }
+  }
+
+  textarea {
+    flex: 1 1 auto;
+    resize: none;
+  }
+
+  h3,
+  .actions {
+    display: flex;
+    flex-direction: row;
+    flex: 0 0 auto;
+  }
+}
