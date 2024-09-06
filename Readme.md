@@ -11,7 +11,7 @@ Allows the editing of chat messages that *you* created (GMs cannot edit messages
 - Show Edited Messages: show message, show icon, do not show (shows icon by default). *World setting*.
 - Markdown Styling (on by default). *Client setting*.
 - Allow Emojis (off by default). *World setting*.
-- Use ApplicationV2 (on my default for Version 12, disabled in Version 11), if for some reason, you want to stick with the Application V1 style. *Client setting*.
+- Use ApplicationV2 (on by default for Version 12, disabled in Version 11), if for some reason, you want to stick with the Application V1 style. *Client setting*.
 
 ## Dual Version Support
 Currently supports both version 11 and version 12 of Foundry.
