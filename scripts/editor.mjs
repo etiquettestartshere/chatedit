@@ -52,7 +52,7 @@ export default class Editor extends FormApplication {
       characters,
       selected,
       alias: this.message.speaker.alias ?? null,
-      content: this.message.content.replace(/< *br *\/?>/gim, "\n")
+      content: this.message.content.replace(/< *br *\/?>/gm, '\r')
     });
   }
 
