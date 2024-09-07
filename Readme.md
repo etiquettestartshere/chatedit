@@ -19,6 +19,9 @@ Currently supports both version 11 and version 12 of Foundry.
 ## System Requirements
 This module is, to the best of my abilities, designed to be system agnostic. The most obvious failure point would be allowing messages that are not supposed to be edited to be edited, or the (edited) message or icon displaying incorrectly depending on system's chat cards. I have currently tested it on dnd5e and swb. If you find that it does not function as desired on another system, please make a github issue about it and compatibility will be investigated.
 
+## Limitations
+Does not correctly support certain markdown styles, such as sorted or unsorted lists. This is due to, I believe, how foundry handles line breaks. Personally I have no use for them and am only after inline styling, so if someone wants this to work correctly I would be open to pull requests.
+
 ## Hooks
 The below hooks are intended for module developers or world script enjoyers who may be touching or processing ChatMessages, to ensure that their changes happen before or after this module's changes, or for whatever other reason.
 ```js
