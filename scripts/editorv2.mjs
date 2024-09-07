@@ -68,7 +68,7 @@ export default class EditorV2 extends HandlebarsApplicationMixin(ApplicationV2) 
     return foundry.utils.mergeObject(options, {
       speakers,
       alias: this.message.speaker.alias ?? null,
-      content: this.message.content.replace(/< *br *\/?>/gim, "\n")
+      content: this.message.content.replace(/< *br *\/?>/gm, '\r')
     });
   }
 
