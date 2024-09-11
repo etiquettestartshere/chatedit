@@ -15,3 +15,6 @@ export const SETTINGS = {
   SHOW: "showEdited"
 };
 export const localize = (key) => game.i18n.localize(key);
+export function userAuthor() {
+  return foundry.utils.isNewerVersion(12, game.version) ? "user" : "author";
+};

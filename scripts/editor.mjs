@@ -1,4 +1,4 @@
-import { MODULE } from "./const.mjs";
+import { MODULE, userAuthor } from "./const.mjs";
 import { Editing } from "./editing.mjs";
 
 export default class Editor extends FormApplication {
@@ -41,10 +41,11 @@ export default class Editor extends FormApplication {
     })).filter((a) => a.actors.length);
 
     // Prepare selected
+    const USERAUTHOR = userAuthor();
     let selected = '';
     this.message.speaker.token ?
       selected = this.message.speaker.token :
-      selected = this.message.user.id;
+      selected = this.message[USERAUTHOR].id;
 
     // Prepare data & handle linebreaks
     return foundry.utils.mergeObject(options, {
