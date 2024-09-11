@@ -29,8 +29,9 @@ export class ProcessChat {
   static async processShowdown(message) {
 
     // Filter out messages that shouldn't be edited
-    if (message.getFlag('core', 'canPopout') || message.isRoll) return;
+    if (message.isRoll) return;
     if (message.content.includes('<button')) return;
+    if (!foundry.utils.isEmpty(message.flags?.[game.system.id])) return;
 
     // The id of the user making the message
     const userid = game.user.id;
