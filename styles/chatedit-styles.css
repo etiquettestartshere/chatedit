@@ -45,6 +45,8 @@
     flex: 1 1 auto;
     height: 620px;
     resize: none;
+    font-family: var(--font-primary);
+    font-size: var(--font-size-14);
   }
 
   .form-footer {
@@ -84,6 +86,8 @@
   textarea {
     flex: 1 1 auto;
     resize: none;
+    font-family: var(--font-primary);
+    font-size: var(--font-size-14);
   }
 
   h3,
