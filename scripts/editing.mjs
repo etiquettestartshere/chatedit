@@ -178,7 +178,7 @@ export class Editing {
    */
   static _canEdit(id) {
     const message = game.messages.get(id);
-    if (message.isAuthor) return false;
+    if (!message.isAuthor) return false;
     if (message.isRoll) return false;
     if (!foundry.utils.isEmpty(message.flags?.[game.system.id])) return false;
     return true;
