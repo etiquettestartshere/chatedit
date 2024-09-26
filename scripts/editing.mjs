@@ -1,4 +1,4 @@
-import { MODULE, CHATEDIT_CONST, SETTINGS, localize, userAuthor } from "./const.mjs";
+import { MODULE, CHATEDIT_CONST, SETTINGS, localize } from "./const.mjs";
 import EditorV2 from "./editorv2.mjs";
 import Editor from "./editor.mjs";
 
@@ -178,8 +178,7 @@ export class Editing {
    */
   static _canEdit(id) {
     const message = game.messages.get(id);
-    const USERAUTHOR = userAuthor();
-    if (message[USERAUTHOR].id !== game.userId) return false;
+    if (!message.isAuthor) return false;
     if (message.isRoll) return false;
     if (!foundry.utils.isEmpty(message.flags?.[game.system.id])) return false;
     return true;
