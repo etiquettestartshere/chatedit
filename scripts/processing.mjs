@@ -1,4 +1,5 @@
-import { MODULE, SETTINGS, localize } from "./const.mjs";
+import { MODULE, CHATEDIT_CONST, SETTINGS, localize } from "./const.mjs";
+import { Editing } from "./editing.mjs";
 
 export class ProcessChat {
   static init() {
@@ -8,6 +9,7 @@ export class ProcessChat {
       ProcessChat.enrichers();
     }
     Hooks.on("renderChatMessage", ProcessChat._edited);
+    Hooks.on("renderChatMessage", ProcessChat._ooc);
   }
 
   /**
@@ -77,7 +79,7 @@ export class ProcessChat {
    * @param {ChatMessage} message The ChatMessage to be parsed.
    * @param {HTMLElement} html HTML contents of the message.
    */
-  static async _edited(message, [html]) {
+  static _edited(message, [html]) {
     const flag = message.flags?.chatedit?.edited;
     if (!flag) return;
     const show = game.settings.get(MODULE, SETTINGS.SHOW);
@@ -87,5 +89,16 @@ export class ProcessChat {
     else if (show === 2) edited = '<i class="fa-solid fa-eraser"></i>';
     const meta = html.querySelector('.message-timestamp');
     meta.insertAdjacentHTML('afterend', edited);
+  }
+
+  /**
+   * Add a css class to ooc messages.
+   * @param {ChatMessage} message The ChatMessage.
+   * @param {HTMLElement} html HTML contents of the message.
+   */
+  static _ooc(message, [html]) {
+    if (message.isRoll) return;
+    let STYLETYPE = Editing.styleType();
+    if (message[STYLETYPE] === CHATEDIT_CONST.CHAT_MESSAGE_STYLES.OOC) html.classList.add("ooc");
   }
 }
