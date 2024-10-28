@@ -3,12 +3,12 @@
   max-height: 830px;
   --header-height: 32px;
 
-  h5 {
+  & h5 {
     font-size: var(--font-size-18);
     margin: 0.4rem 0 .05rem;
   }
 
-  .standard-form {
+  & .standard-form {
     gap: .25rem;
     width: auto;
 
@@ -17,21 +17,21 @@
     }
   }
 
-  .alias-row {
+  & .alias-row {
     display: flex;
 
-    input {
+    & input {
       height: 1.8rem;
     }
 
-    button {
+    & button {
       width: 80px;
       margin-left: .4em;
       height: 1.8rem;
     }
   }
 
-  .window-content {
+  & .window-content {
     display: flex;
     flex-direction: column;
     flex-wrap: nowrap;
@@ -41,7 +41,7 @@
     overflow-x: hidden;
   }
 
-  textarea {
+  & textarea {
     flex: 1 1 auto;
     height: 620px;
     resize: none;
@@ -49,18 +49,18 @@
     font-size: var(--font-size-14);
   }
 
-  .form-footer {
+  & .form-footer {
     gap: .3rem;
   }
 
-  .actions {
+  & .actions {
     display: flex;
     flex-direction: row;
     margin-top: auto;
     margin-bottom: 5px;
     flex: 1 0;
 
-    button {
+    & button {
       height: 2rem;
     }
   }
@@ -72,10 +72,10 @@
   display: flex;
   flex-direction: column;
 
-  .alias-row {
+  & .alias-row {
     display: flex;
 
-    button {
+    & button {
       flex: 0 0 auto;
       width: 5.5rem;
       margin-left: .4em;
@@ -83,15 +83,15 @@
     }
   }
 
-  textarea {
+  & textarea {
     flex: 1 1 auto;
     resize: none;
     font-family: var(--font-primary);
     font-size: var(--font-size-14);
   }
 
-  h3,
-  .actions {
+  & h3,
+  & .actions {
     display: flex;
     flex-direction: row;
     flex: 0 0 auto;
@@ -113,4 +113,5 @@
 
 .message:is(.emote, .ic, .ooc) * {
   user-select: text;
+  -webkit-user-select: text;
 }
