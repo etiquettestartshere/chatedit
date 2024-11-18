@@ -33,6 +33,7 @@ export class ProcessChat {
     // Filter out messages that shouldn't be edited
     if (message.isRoll) return;
     if (message.content.includes('<button')) return;
+    if (message.content.includes('class=\"action-content\"')) return;
     if (!foundry.utils.isEmpty(message.flags?.[game.system.id])) return;
 
     // The id of the user making the message

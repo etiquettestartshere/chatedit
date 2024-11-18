@@ -1,7 +1,7 @@
 {
   "id": "chatedit",
   "title": "Chat Edit",
-  "version": "0.0.29",
+  "version": "0.0.30",
   "esmodules": ["scripts/setup.mjs"],
   "styles": ["styles/chatedit-styles.css"],
   "compatibility": {
